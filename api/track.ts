@@ -6,14 +6,10 @@
  * user identifiers, just the context the user picked. Identity free-text is
  * never stored; we only record whether the field was filled.
  *
- * Runtime pinned to Node 20 (LTS) for stability with @supabase/supabase-js.
- * All imports happen inside the handler so module-load errors surface as
- * regular HTTP 500 with a useful body instead of FUNCTION_INVOCATION_FAILED.
+ * Node version is pinned via `engines.node` in package.json. All imports
+ * happen inside the handler so module-load errors surface as regular HTTP
+ * 500 with a useful body instead of FUNCTION_INVOCATION_FAILED.
  */
-
-export const config = {
-  runtime: 'nodejs20.x',
-};
 
 const GIVERS = new Set(['Manager', 'Peer', 'Skip-level', 'Executive']);
 const METHODS = new Set([
