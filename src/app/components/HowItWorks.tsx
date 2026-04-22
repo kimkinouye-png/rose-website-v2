@@ -8,7 +8,7 @@ export default function HowItWorks() {
     {
       number: 2,
       title: 'Fairness check',
-      description: 'Is this feedback fair? Rose looks for bias, microaggressions, vague language - anything that\'s confusing or just not actionable.'
+      description: 'Is this feedback fair? Rose looks for bias, microaggressions, vague language. Anything that\'s confusing or just not actionable.'
     },
     {
       number: 3,

@@ -9,7 +9,7 @@ export default function RoseLogo({ size = 'nav', variant = 'light' }: RoseLogoPr
     chat: 'text-[40px]',       // 40px
     display: 'text-[80px]',    // 80px
     hero: 'text-[120px]',      // 120px
-    watermark: 'text-[260px]'  // 260px — background watermark use
+    watermark: 'text-[260px]'  // 260px, background watermark use
   };
 
   const baseColor = variant === 'light' ? 'text-[#2B1A2E]' : 'text-white';
