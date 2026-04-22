@@ -5,21 +5,22 @@ interface HeroProps {
 export default function Hero({ onGetStarted }: HeroProps) {
   return (
     <section className="relative pt-32 pb-24 px-6 bg-[#2B1A2E] overflow-hidden">
-      {/* Back layer: Rose wordmark as atmosphere.
-          Bleeds off the right edge so the midpoint of 's' sits at viewport right
-          edge and 'e' extends off-screen. Georgia serif, 6% opacity.
+      {/* Back layer: Rose wordmark as atmospheric anchor.
+          Baseline near the bottom of the hero, 47vw Georgia serif at 10% opacity.
+          Midpoint of 's' sits at the viewport right edge; 'e' extends off-screen.
           Hidden below md to avoid visual clutter on small viewports. */}
       <div
         aria-hidden="true"
-        className="hidden md:block absolute z-0 pointer-events-none select-none leading-none whitespace-nowrap"
+        className="hidden md:block absolute z-0 pointer-events-none select-none whitespace-nowrap"
         style={{
-          left: '47vw',
-          top: '25%',
+          left: '35vw',
+          bottom: '-5vw',
           fontFamily: 'Georgia, "Times New Roman", serif',
-          fontSize: '38vw',
+          fontSize: '47vw',
           color: '#F5EAE6',
-          opacity: 0.06,
+          opacity: 0.1,
           letterSpacing: '-0.04em',
+          lineHeight: 1,
         }}
       >
         Rose
@@ -29,29 +30,41 @@ export default function Hero({ onGetStarted }: HeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left column: text content */}
           <div>
-            <div className="text-sm tracking-wider text-[#C9A14A] mb-4">AI CAREER COACH</div>
-            <h1
-              className="text-white tracking-tight leading-[1.05] mb-6 text-[32px] md:text-[38px] lg:text-[42px]"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+            <div
+              className="text-[#C9A14A] mb-6"
+              style={{ fontSize: '14px', letterSpacing: '1.5px' }}
             >
-              Not all feedback is<br />created equal.
+              AI CAREER COACH
+            </div>
+            <h1
+              className="tracking-tight leading-[1.05] mb-6 text-[42px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
+              style={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                color: '#F5EAE6',
+              }}
+            >
+              Not all<br />feedback is<br />created equal.
             </h1>
-            <p className="text-lg text-[#D9B8C0] mb-8 max-w-lg leading-relaxed">
+            <p
+              className="text-[#D9B8C0] mb-8 max-w-lg leading-relaxed"
+              style={{ fontSize: '18px' }}
+            >
               Paste the feedback you got. Rose decodes what it actually means and what, if anything, to do with it.
             </p>
             <div className="inline-flex flex-col items-center">
               <button
                 onClick={onGetStarted}
-                className="min-w-[176px] px-6 py-3.5 bg-[#C9A14A] text-[#2B1A2E] rounded-lg hover:bg-[#B89140] transition-all hover:shadow-xl hover:scale-105"
+                className="min-w-[200px] px-8 py-4 bg-[#C9A14A] text-[#2B1A2E] rounded-lg hover:bg-[#B89140] transition-all hover:shadow-xl hover:scale-105"
+                style={{ fontSize: '16px' }}
               >
                 Decode my feedback
               </button>
               <span
-                className="mt-2"
+                className="mt-4"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '10px',
-                  color: 'rgba(217, 184, 192, 0.65)',
+                  fontSize: '14px',
+                  color: 'rgba(217, 184, 192, 0.7)',
                   letterSpacing: '0.5px',
                 }}
               >
@@ -62,7 +75,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
 
           {/* Right column: two floating conversation cards.
               Card 1 (user) on top at left edge of column.
-              Card 2 (Rose) below, offset ~30px further right (staircase). */}
+              Card 2 (Rose) below, offset ~36px further right (staircase). */}
           <div className="relative">
             {/* Card 1: User message */}
             <div
@@ -76,7 +89,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
                 className="mb-2"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '10px',
+                  fontSize: '12px',
                   color: '#8B5A6B',
                 }}
               >
@@ -86,7 +99,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
                 className="leading-relaxed"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '12px',
+                  fontSize: '14px',
                   color: '#D9B8C0',
                 }}
               >
@@ -96,7 +109,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
 
             {/* Card 2: Rose's diagnostic (staircase offset right, gap below Card 1) */}
             <div
-              className="rounded-xl p-[18px] shadow-lg border mt-5 ml-[30px]"
+              className="rounded-xl p-[18px] shadow-lg border mt-5 ml-[36px]"
               style={{
                 backgroundColor: 'rgba(139, 90, 107, 0.35)',
                 borderColor: 'rgba(139, 90, 107, 0.5)',
@@ -106,7 +119,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
                 className="mb-2"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '10px',
+                  fontSize: '12px',
                   color: '#C9A14A',
                 }}
               >
@@ -116,7 +129,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
                 className="leading-relaxed"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '12px',
+                  fontSize: '14px',
                   color: '#F5EAE6',
                 }}
               >
