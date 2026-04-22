@@ -10,11 +10,11 @@ export default function Hero({ onGetStarted }: HeroProps) {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#C9A14A]/20 text-[#C9A14A] text-xs tracking-wide mb-6 rounded-full border border-[#C9A14A]/30">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#C9A14A]/20 text-[#C9A14A] text-sm tracking-wide mb-6 rounded-full border border-[#C9A14A]/30">
               <div className="w-1.5 h-1.5 bg-[#C9A14A] rounded-full"></div>
               Free to use. Always.
             </div>
-            <div className="text-xs tracking-wider text-[#C9A14A] mb-4">AI CAREER COACH</div>
+            <div className="text-sm tracking-wider text-[#C9A14A] mb-4">AI CAREER COACH</div>
             <h1 className="text-6xl lg:text-7xl mb-6 tracking-tight leading-[1.1] text-white">
               Your feedback, decoded.
             </h1>
@@ -42,15 +42,15 @@ export default function Hero({ onGetStarted }: HeroProps) {
 
               {/* Feedback Example Card */}
               <div className="relative z-10 bg-[#8B5A6B]/30 border border-[#8B5A6B]/50 rounded-2xl p-6 shadow-lg mt-8">
-                <div className="text-xs text-[#C9A14A] mb-2">Fairness check</div>
-                <p className="text-sm text-[#F5EAE6] mb-4">
+                <div className="text-sm text-[#C9A14A] mb-2">Fairness check</div>
+                <p className="text-base text-[#F5EAE6] mb-4 leading-relaxed">
                   "That feedback has a tightrope pattern. Let me show you what's actually going on..."
                 </p>
               </div>
 
               {/* User Message */}
               <div className="relative z-10 bg-[#2B1A2E] text-[#D9B8C0] border border-[#8B5A6B]/30 rounded-2xl p-4 mt-4 shadow-lg">
-                <p className="text-sm">
+                <p className="text-base leading-relaxed">
                   "My boss just told me I need to be more vocal in meetings. But Sarah is super quiet and no one ever tells her that..."
                 </p>
               </div>

@@ -37,7 +37,7 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto">
         {/* How Rose Works */}
         <div className="text-center mb-16">
-          <div className="text-xs tracking-wider text-[#8B5A6B] mb-4">HOW ROSE WORKS</div>
+          <div className="text-sm tracking-wider text-[#8B5A6B] mb-4">HOW ROSE WORKS</div>
           <h2 className="text-5xl tracking-tight mb-4 text-[#2B1A2E]">Three steps. Every time.</h2>
           <p className="text-lg text-[#3D2640]">Rose doesn't just listen. She digs in.</p>
         </div>
@@ -56,7 +56,7 @@ export default function HowItWorks() {
 
         {/* Why Rose Exists */}
         <div className="mb-12">
-          <div className="text-xs tracking-wider text-[#8B5A6B] mb-4">WHY ROSE EXISTS</div>
+          <div className="text-sm tracking-wider text-[#8B5A6B] mb-4">WHY ROSE EXISTS</div>
           <h2 className="text-5xl tracking-tight mb-6 text-[#2B1A2E]">
             Not all feedback is<br />created equal.
           </h2>
@@ -72,7 +72,7 @@ export default function HowItWorks() {
               className="p-6 border-l-4 border-[#C9A14A] bg-white hover:bg-[#F5EAE6]/50 transition-all rounded-r-xl"
             >
               <h3 className="text-xl mb-2 tracking-tight text-[#2B1A2E]">{pattern.title}</h3>
-              <p className="text-[#3D2640] text-sm leading-relaxed">{pattern.description}</p>
+              <p className="text-[#3D2640] text-base leading-relaxed">{pattern.description}</p>
             </div>
           ))}
         </div>
