@@ -32,12 +32,12 @@ export default function Hero({ onGetStarted }: HeroProps) {
           <div>
             <div
               className="text-[#C9A14A] mb-6"
-              style={{ fontSize: '14px', letterSpacing: '1.5px' }}
+              style={{ fontSize: '15px', letterSpacing: '1.5px' }}
             >
               AI CAREER COACH
             </div>
             <h1
-              className="tracking-tight leading-[1.05] mb-6 text-[42px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
+              className="tracking-tight leading-[1.05] mb-6 text-[48px] md:text-[60px] lg:text-[76px] xl:text-[92px]"
               style={{
                 fontFamily: 'Georgia, "Times New Roman", serif',
                 color: '#F5EAE6',
@@ -46,16 +46,16 @@ export default function Hero({ onGetStarted }: HeroProps) {
               Not all<br />feedback is<br />created equal.
             </h1>
             <p
-              className="text-[#D9B8C0] mb-8 max-w-lg leading-relaxed"
-              style={{ fontSize: '18px' }}
+              className="text-[#D9B8C0] mb-8 max-w-xl leading-relaxed"
+              style={{ fontSize: '22px' }}
             >
               Paste the feedback you got. Rose decodes what it actually means and what, if anything, to do with it.
             </p>
             <div className="inline-flex flex-col items-center">
               <button
                 onClick={onGetStarted}
-                className="min-w-[200px] px-8 py-4 bg-[#C9A14A] text-[#2B1A2E] rounded-lg hover:bg-[#B89140] transition-all hover:shadow-xl hover:scale-105"
-                style={{ fontSize: '16px' }}
+                className="min-w-[240px] px-10 py-5 bg-[#C9A14A] text-[#2B1A2E] rounded-lg hover:bg-[#B89140] transition-all hover:shadow-xl hover:scale-105"
+                style={{ fontSize: '19px' }}
               >
                 Decode my feedback
               </button>
@@ -63,7 +63,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
                 className="mt-4"
                 style={{
                   fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-                  fontSize: '14px',
+                  fontSize: '15px',
                   color: 'rgba(217, 184, 192, 0.7)',
                   letterSpacing: '0.5px',
                 }}
@@ -79,7 +79,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
           <div className="relative">
             {/* Card 1: User message */}
             <div
-              className="rounded-xl p-[18px] shadow-lg border"
+              className="rounded-xl p-[18px] shadow-lg border max-w-[420px]"
               style={{
                 backgroundColor: '#3D2640',
                 borderColor: 'rgba(139, 90, 107, 0.4)',
@@ -109,7 +109,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
 
             {/* Card 2: Rose's diagnostic (staircase offset right, gap below Card 1) */}
             <div
-              className="rounded-xl p-[18px] shadow-lg border mt-5 ml-[36px]"
+              className="rounded-xl p-[18px] shadow-lg border mt-5 ml-[36px] max-w-[420px]"
               style={{
                 backgroundColor: 'rgba(139, 90, 107, 0.35)',
                 borderColor: 'rgba(139, 90, 107, 0.5)',

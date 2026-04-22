@@ -18,7 +18,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 px-6 bg-[#2B1A2E]">
+    <section id="how-it-works" className="py-24 px-6 bg-[#3D2640]">
       <div className="max-w-7xl mx-auto">
         {/* How Rose Works */}
         <div className="text-center mb-16">
