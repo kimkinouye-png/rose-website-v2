@@ -8,10 +8,26 @@ import RoseLogo from './components/RoseLogo';
 
 const LIVE_CHAT_URL = 'https://rose-website-tan.vercel.app/chat.html';
 
+type Profile = { giver: string; method: string; identity: string };
+
+// Build the handoff URL. `onboarded=1` tells production to suppress its own
+// modal. When a profile is supplied, production hydrates its userContext from
+// the remaining params (giver -> source, method -> setting, identity -> identity).
+function buildChatUrl(profile: Profile | null): string {
+  const url = new URL(LIVE_CHAT_URL);
+  url.searchParams.set('onboarded', '1');
+  if (profile) {
+    if (profile.giver) url.searchParams.set('giver', profile.giver);
+    if (profile.method) url.searchParams.set('method', profile.method);
+    if (profile.identity) url.searchParams.set('identity', profile.identity);
+  }
+  return url.toString();
+}
+
 export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
-  // Captured but not yet passed to chat. Chat redesign phase will pick this up.
-  const [, setUserProfile] = useState<{ giver: string; method: string; identity: string } | null>(null);
+  // Captured locally for future use; production reads its copy from URL params.
+  const [, setUserProfile] = useState<Profile | null>(null);
 
   const handleGetStarted = () => {
     setShowOnboarding(true);
@@ -23,16 +39,17 @@ export default function App() {
   };
 
   const handleSkip = () => {
-    // Skip for now: advance to chat with an empty profile so users aren't blocked.
+    // Skip for now: advance to chat with no profile but still flag onboarded
+    // so production doesn't re-prompt.
     setShowOnboarding(false);
     setUserProfile({ giver: '', method: '', identity: '' });
-    window.location.href = LIVE_CHAT_URL;
+    window.location.href = buildChatUrl(null);
   };
 
-  const handleOnboardingComplete = (profile: { giver: string; method: string; identity: string }) => {
+  const handleOnboardingComplete = (profile: Profile) => {
     setUserProfile(profile);
     setShowOnboarding(false);
-    window.location.href = LIVE_CHAT_URL;
+    window.location.href = buildChatUrl(profile);
   };
 
   return (
