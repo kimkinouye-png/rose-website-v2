@@ -39,10 +39,10 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-[#2B1A2E] text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <RoseLogo size="display" variant="dark" />
-          <div className="flex items-center gap-8 text-sm text-[#D9B8C0]">
-            <span>© 2026 Rose. Your feedback, decoded.</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#D9B8C0]">
+            <span>© 2026 Rose.<span className="hidden md:inline"> Your feedback, decoded.</span></span>
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>
             <a href="#" className="hover:text-white transition-colors">How to Rose</a>
