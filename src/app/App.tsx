@@ -9,13 +9,24 @@ import RoseLogo from './components/RoseLogo';
 const LIVE_CHAT_URL = 'https://rose-website-tan.vercel.app/chat.html';
 
 type Profile = { giver: string; method: string; identity: string };
+type TrackSource = 'submit' | 'skip';
+
+type TrackPayload = {
+  session_id: string;
+  source: TrackSource;
+  giver: string | null;
+  method: string | null;
+  identity_provided: boolean;
+};
 
 // Build the handoff URL. `onboarded=1` tells production to suppress its own
-// modal. When a profile is supplied, production hydrates its userContext from
-// the remaining params (giver -> source, method -> setting, identity -> identity).
-function buildChatUrl(profile: Profile | null): string {
+// modal. `session_id` is passed through so Stage 2 output logging can join
+// back to the context record. Profile fields hydrate production's userContext
+// (giver -> source, method -> setting, identity -> identity).
+function buildChatUrl(profile: Profile | null, sessionId: string): string {
   const url = new URL(LIVE_CHAT_URL);
   url.searchParams.set('onboarded', '1');
+  url.searchParams.set('session_id', sessionId);
   if (profile) {
     if (profile.giver) url.searchParams.set('giver', profile.giver);
     if (profile.method) url.searchParams.set('method', profile.method);
@@ -24,32 +35,76 @@ function buildChatUrl(profile: Profile | null): string {
   return url.toString();
 }
 
+// Fire-and-forget analytics. sendBeacon is designed to survive page navigation
+// so we don't have to await anything before redirecting. Any error is swallowed
+// locally so tracking failures never block the user flow.
+function trackSubmission(payload: TrackPayload): void {
+  try {
+    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon('/api/track', blob);
+    } else {
+      // Fallback for the rare browser without sendBeacon
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {});
+    }
+  } catch {
+    // Never block user flow on tracking errors
+  }
+}
+
 export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   // Captured locally for future use; production reads its copy from URL params.
   const [, setUserProfile] = useState<Profile | null>(null);
 
   const handleGetStarted = () => {
+    // Generate a fresh session_id each time the modal opens. If the user
+    // dismisses (X) and re-opens, they get a new session, which is correct
+    // since they haven't submitted yet.
+    setSessionId(crypto.randomUUID());
     setShowOnboarding(true);
   };
 
   const handleModalClose = () => {
-    // X button: dismiss back to homepage, no redirect.
+    // X button: dismiss back to homepage, no redirect, no tracking event.
+    // (A dismissal is distinct from a skip; skip still means the user wants
+    // to talk to Rose.)
     setShowOnboarding(false);
+    setSessionId(null);
   };
 
   const handleSkip = () => {
-    // Skip for now: advance to chat with no profile but still flag onboarded
-    // so production doesn't re-prompt.
+    const id = sessionId ?? crypto.randomUUID();
+    trackSubmission({
+      session_id: id,
+      source: 'skip',
+      giver: null,
+      method: null,
+      identity_provided: false,
+    });
     setShowOnboarding(false);
     setUserProfile({ giver: '', method: '', identity: '' });
-    window.location.href = buildChatUrl(null);
+    window.location.href = buildChatUrl(null, id);
   };
 
   const handleOnboardingComplete = (profile: Profile) => {
+    const id = sessionId ?? crypto.randomUUID();
+    trackSubmission({
+      session_id: id,
+      source: 'submit',
+      giver: profile.giver || null,
+      method: profile.method || null,
+      identity_provided: profile.identity.trim().length > 0,
+    });
     setUserProfile(profile);
     setShowOnboarding(false);
-    window.location.href = buildChatUrl(profile);
+    window.location.href = buildChatUrl(profile, id);
   };
 
   return (

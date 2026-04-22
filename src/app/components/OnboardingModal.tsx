@@ -61,7 +61,7 @@ export default function OnboardingModal({ isOpen, onClose, onSkip, onComplete }:
             Before we start
           </h2>
           <p className="text-[14px] text-[#D9B8C0] leading-relaxed">
-            A bit of context helps Rose be more precise. Nothing here is stored or shared.
+            A bit of context helps Rose be more precise. We save patterns anonymously to help Rose improve. Nothing is tied to you.
           </p>
         </div>
 
