@@ -1,4 +1,4 @@
-import RoseLogo from './RoseLogo';
+import HeroWatermark from './HeroWatermark';
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -36,14 +36,12 @@ export default function Hero({ onGetStarted }: HeroProps) {
 
           {/* Visual Element */}
           <div className="relative">
-            <div className="relative bg-[#3D2640] rounded-3xl p-12 shadow-2xl">
-              {/* Rose Logo - prominent brand element inside card */}
-              <div className="absolute top-6 right-6 z-10 opacity-90">
-                <RoseLogo size="hero" variant="dark" />
-              </div>
+            <div className="relative bg-[#3D2640] rounded-3xl p-12 shadow-2xl overflow-hidden">
+              {/* Rose watermark — parallax + ambient drift behind feedback cards */}
+              <HeroWatermark />
 
               {/* Feedback Example Card */}
-              <div className="bg-[#8B5A6B]/30 border border-[#8B5A6B]/50 rounded-2xl p-6 shadow-lg mt-8">
+              <div className="relative z-10 bg-[#8B5A6B]/30 border border-[#8B5A6B]/50 rounded-2xl p-6 shadow-lg mt-8">
                 <div className="text-xs text-[#C9A14A] mb-2">Fairness check</div>
                 <p className="text-sm text-[#F5EAE6] mb-4">
                   "That feedback has a tightrope pattern. Let me show you what's actually going on..."
@@ -51,7 +49,7 @@ export default function Hero({ onGetStarted }: HeroProps) {
               </div>
 
               {/* User Message */}
-              <div className="bg-[#2B1A2E] text-[#D9B8C0] border border-[#8B5A6B]/30 rounded-2xl p-4 mt-4 shadow-lg">
+              <div className="relative z-10 bg-[#2B1A2E] text-[#D9B8C0] border border-[#8B5A6B]/30 rounded-2xl p-4 mt-4 shadow-lg">
                 <p className="text-sm">
                   "My boss just told me I need to be more vocal in meetings. But Sarah is super quiet and no one ever tells her that..."
                 </p>
