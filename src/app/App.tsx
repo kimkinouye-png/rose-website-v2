@@ -2,15 +2,37 @@ import { useState } from 'react';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import CTA from './components/CTA';
-// import OnboardingModal from './components/OnboardingModal'; // re-enable in chat redesign phase
-// import ChatInterface from './components/ChatInterface';     // re-enable in chat redesign phase
+import OnboardingModal from './components/OnboardingModal';
+// import ChatInterface from './components/ChatInterface'; // re-enable in chat redesign phase
 import RoseLogo from './components/RoseLogo';
+
+const LIVE_CHAT_URL = 'https://rose-website-tan.vercel.app/chat.html';
 
 export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  // Captured but not yet passed to chat. Chat redesign phase will pick this up.
+  const [, setUserProfile] = useState<{ giver: string; method: string; identity: string } | null>(null);
 
   const handleGetStarted = () => {
-    window.location.href = 'https://rose-website-tan.vercel.app/chat.html';
+    setShowOnboarding(true);
+  };
+
+  const handleModalClose = () => {
+    // X button: dismiss back to homepage, no redirect.
+    setShowOnboarding(false);
+  };
+
+  const handleSkip = () => {
+    // Skip for now: advance to chat with an empty profile so users aren't blocked.
+    setShowOnboarding(false);
+    setUserProfile({ giver: '', method: '', identity: '' });
+    window.location.href = LIVE_CHAT_URL;
+  };
+
+  const handleOnboardingComplete = (profile: { giver: string; method: string; identity: string }) => {
+    setUserProfile(profile);
+    setShowOnboarding(false);
+    window.location.href = LIVE_CHAT_URL;
   };
 
   return (
@@ -49,6 +71,13 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <OnboardingModal
+        isOpen={showOnboarding}
+        onClose={handleModalClose}
+        onSkip={handleSkip}
+        onComplete={handleOnboardingComplete}
+      />
     </div>
   );
 }
