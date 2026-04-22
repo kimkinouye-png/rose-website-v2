@@ -37,9 +37,9 @@ export default function Hero({ onGetStarted }: HeroProps) {
           {/* Visual Element */}
           <div className="relative">
             <div className="relative bg-[#3D2640] rounded-3xl p-12 shadow-2xl">
-              {/* Rose Logo - accent inside card */}
+              {/* Rose Logo - prominent brand element inside card */}
               <div className="absolute top-6 right-6 z-10 opacity-90">
-                <RoseLogo size="chat" variant="dark" />
+                <RoseLogo size="hero" variant="dark" />
               </div>
 
               {/* Feedback Example Card */}

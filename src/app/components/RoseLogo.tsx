@@ -1,13 +1,14 @@
 interface RoseLogoProps {
-  size?: 'nav' | 'chat' | 'display';
+  size?: 'nav' | 'chat' | 'display' | 'hero';
   variant?: 'light' | 'dark';
 }
 
 export default function RoseLogo({ size = 'nav', variant = 'light' }: RoseLogoProps) {
   const sizes = {
-    nav: 'text-2xl',      // 24px
-    chat: 'text-[40px]',  // 40px
-    display: 'text-[80px]' // 80px
+    nav: 'text-2xl',        // 24px
+    chat: 'text-[40px]',    // 40px
+    display: 'text-[80px]', // 80px
+    hero: 'text-[120px]'    // 120px
   };
 
   const baseColor = variant === 'light' ? 'text-[#2B1A2E]' : 'text-white';
