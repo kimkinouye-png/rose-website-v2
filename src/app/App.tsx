@@ -6,7 +6,7 @@ import OnboardingModal from './components/OnboardingModal';
 // import ChatInterface from './components/ChatInterface'; // re-enable in chat redesign phase
 import RoseLogo from './components/RoseLogo';
 
-const LIVE_CHAT_URL = 'https://rose-website-tan.vercel.app/chat.html';
+const LIVE_CHAT_URL = 'https://chat.askrose.io/chat.html';
 
 type Profile = { giver: string; method: string; identity: string };
 type TrackSource = 'submit' | 'skip';
