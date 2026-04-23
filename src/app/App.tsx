@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import CTA from './components/CTA';
@@ -62,6 +62,19 @@ export default function App() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   // Captured locally for future use; production reads its copy from URL params.
   const [, setUserProfile] = useState<Profile | null>(null);
+  // Nav is transparent over the hero at scroll 0 and picks up plum past 80px.
+  // Chat (chat.askrose.io) uses the same plum, but always-on since it has no hero.
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 80;
+      setIsScrolled((prev) => (prev === scrolled ? prev : scrolled));
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Run once in case page loaded mid-scroll
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleGetStarted = () => {
     // Generate a fresh session_id each time the modal opens. If the user
@@ -110,11 +123,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F5EAE6]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F5EAE6]/80 backdrop-blur-md border-b border-[#D9B8C0]/30">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${
+          isScrolled
+            ? 'bg-[#2B1A2E] border-b border-[#8B5A6B]/15'
+            : 'bg-transparent border-b border-transparent'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <RoseLogo size="nav" variant="light" />
+          <RoseLogo size="nav" variant="dark" />
           <div className="flex items-center gap-8">
-            <a href="#how-it-works" className="text-sm text-[#3D2640] hover:text-[#2B1A2E] transition-colors">
+            <a href="#how-it-works" className="text-sm text-[#D9B8C0] hover:text-[#F5EAE6] transition-colors">
               How it works
             </a>
             <button
