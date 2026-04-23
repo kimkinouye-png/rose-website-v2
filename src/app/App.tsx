@@ -3,7 +3,6 @@ import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import CTA from './components/CTA';
 import OnboardingModal from './components/OnboardingModal';
-// import ChatInterface from './components/ChatInterface'; // re-enable in chat redesign phase
 import RoseLogo from './components/RoseLogo';
 
 const LIVE_CHAT_URL = 'https://chat.askrose.io/chat.html';
@@ -60,8 +59,6 @@ function trackSubmission(payload: TrackPayload): void {
 export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  // Captured locally for future use; production reads its copy from URL params.
-  const [, setUserProfile] = useState<Profile | null>(null);
   // Nav is transparent over the hero at scroll 0 and picks up plum past 80px.
   // Chat (chat.askrose.io) uses the same plum, but always-on since it has no hero.
   const [isScrolled, setIsScrolled] = useState(false);
@@ -102,7 +99,6 @@ export default function App() {
       identity_provided: false,
     });
     setShowOnboarding(false);
-    setUserProfile({ giver: '', method: '', identity: '' });
     window.location.href = buildChatUrl(null, id);
   };
 
@@ -115,7 +111,6 @@ export default function App() {
       method: profile.method || null,
       identity_provided: profile.identity.trim().length > 0,
     });
-    setUserProfile(profile);
     setShowOnboarding(false);
     window.location.href = buildChatUrl(profile, id);
   };
